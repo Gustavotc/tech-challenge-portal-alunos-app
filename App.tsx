@@ -1,19 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { registerRootComponent } from "expo";
+import Routes from "./src/Routes";
 
 const App: React.FC = () => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Teste</Text>
-    </View>
-  );
+  return <Routes />;
 };
 
 export default App;
