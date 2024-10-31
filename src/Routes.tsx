@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './Home';
-import Login from './Login';
+import Login from './features/login/presentation/login/Login';
 
 export type RootStackParamList = {
   Home: undefined;
