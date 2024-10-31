@@ -1,6 +1,6 @@
-import React from "react";
-import { registerRootComponent } from "expo";
-import Routes from "./src/Routes";
+import React from 'react';
+import { registerRootComponent } from 'expo';
+import Routes from '@/Routes';
 
 const App: React.FC = () => {
   return <Routes />;
