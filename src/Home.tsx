@@ -16,6 +16,7 @@ const Home: React.FC = () => {
       }}>
       <Text>Home</Text>
       <Button title='Go to login' onPress={() => navigation.navigate('Login')} />
+      <Button title='Go to post' onPress={() => navigation.navigate('CreatePost')} />
     </View>
   );
 };
