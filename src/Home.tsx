@@ -1,12 +1,7 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
-import { RootStackParamList } from './Routes';
+import { View, Text } from 'react-native';
 
 const Home: React.FC = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Home'>>();
-
   return (
     <View
       style={{
@@ -15,7 +10,6 @@ const Home: React.FC = () => {
         alignItems: 'center',
       }}>
       <Text>Home</Text>
-      <Button title='Go to login' onPress={() => navigation.navigate('Login')} />
     </View>
   );
 };

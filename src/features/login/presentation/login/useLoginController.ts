@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { IUserCredentials } from '../../domain/models/IUserCredentials';
-import api from '@/config/api/Api';
 import { formLoginSchema, IFormLoginSchema } from '../../domain/schemas/FormLoginSchema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Keyboard } from 'react-native';
+import { useLoginService } from '../../infra/services/LoginService';
+import Toast from 'react-native-root-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 export const useLoginController = () => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -17,16 +19,18 @@ export const useLoginController = () => {
     resolver: zodResolver(formLoginSchema),
   });
 
+  const loginService = useLoginService();
+  const { updateUser } = useAuth();
+
   const onSubmitSuccess = async (userCredentials: IUserCredentials) => {
     Keyboard.dismiss();
 
     try {
       formLoginSchema.parse(userCredentials);
-
-      const response = await api.post('/auth/login', userCredentials);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+      const user = await loginService.authenticateUser(userCredentials);
+      updateUser(user);
+    } catch {
+      Toast.show('Falha na autenticação, tente novamente!');
     }
   };
 

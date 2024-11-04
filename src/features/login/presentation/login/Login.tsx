@@ -32,6 +32,7 @@ const Login: React.FC = () => {
               onChangeText={onChange}
               errorMessage={controller.errors.email?.message}
               leftIcon={{ name: 'email-outline' }}
+              autoCapitalize='none'
               keyboardType='email-address'
               style={{ marginTop: 32 }}
             />
