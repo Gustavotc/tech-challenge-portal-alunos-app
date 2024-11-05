@@ -1,11 +1,11 @@
 import React from 'react';
-import { Image, ScrollView } from 'react-native';
+import { Image, ImageBackground, View } from 'react-native';
 import { useLoginController } from './useLoginController';
 import styles from './Styles';
 import TextInput from '@/components/textInput/TextInput';
 import Button from '@/components/button/Button';
-import { LinearGradient } from 'expo-linear-gradient';
 import Logo from '@/../assets/images/logo.png';
+import Background from '@/../assets/images/background.png';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Controller } from 'react-hook-form';
 
@@ -13,56 +13,55 @@ const Login: React.FC = () => {
   const controller = useLoginController();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient colors={['#FFC832', '#F7FF87']} style={styles.background} />
-
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps='handled'>
+    <ImageBackground source={Background} style={styles.background}>
+      <SafeAreaView style={styles.container}>
         <Image source={Logo} style={styles.logo} />
 
-        <Controller
-          name='email'
-          control={controller.control}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Email'
-              value={value}
-              onChangeText={onChange}
-              errorMessage={controller.errors.email?.message}
-              leftIcon={{ name: 'email-outline' }}
-              keyboardType='email-address'
-              style={{ marginTop: 32 }}
-            />
-          )}
-        />
+        <View style={styles.TextInputComponent}>
+          <Controller
+            name='email'
+            control={controller.control}
+            render={({ field: { value, onChange } }) => (
+              <TextInput
+                placeholder='Email'
+                value={value}
+                onChangeText={onChange}
+                errorMessage={controller.errors.email?.message}
+                leftIcon={{ name: 'email-outline' }}
+                keyboardType='email-address'
+                style={{ marginTop: 32 }}
+              />
+            )}
+          />
 
-        <Controller
-          name='password'
-          control={controller.control}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              placeholder='Senha'
-              value={value}
-              onChangeText={onChange}
-              errorMessage={controller.errors.password?.message}
-              secureTextEntry={controller.hidePassword}
-              autoCapitalize='none'
-              autoComplete='off'
-              leftIcon={{ name: 'lock-outline' }}
-              rightIcon={{
-                name: controller.hidePassword ? 'eye-off' : 'eye',
-                onPress: controller.toggleHidePassword,
-              }}
-              style={{ marginTop: 24 }}
-            />
-          )}
-        />
+          <Controller
+            name='password'
+            control={controller.control}
+            render={({ field: { value, onChange } }) => (
+              <TextInput
+                placeholder='Senha'
+                value={value}
+                onChangeText={onChange}
+                errorMessage={controller.errors.password?.message}
+                secureTextEntry={controller.hidePassword}
+                autoCapitalize='none'
+                autoComplete='off'
+                leftIcon={{ name: 'lock-outline' }}
+                rightIcon={{
+                  name: controller.hidePassword ? 'eye-off' : 'eye',
+                  onPress: controller.toggleHidePassword,
+                }}
+                style={{ marginTop: 24 }}
+              />
+            )}
+          />
+        </View>
 
-        <Button title='Login' onPress={controller.handleSignIn} style={{ marginTop: 32 }} />
-      </ScrollView>
-    </SafeAreaView>
+        <View style={styles.buttonContainer}>
+          <Button title='Login' onPress={controller.handleSignIn} style={{ marginTop: 32 }} />
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 

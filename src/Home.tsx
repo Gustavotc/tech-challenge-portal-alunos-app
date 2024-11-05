@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/n
 import { RootStackParamList } from './Routes';
 
 import Logo from '@/../assets/images/logo.png';
+import Background from '@/../assets/images/background.png';
 import Button from '@/components/button/Button';
 
 import styles from './Styles';
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'Home'>>();
 
   return (
-    <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
+    <ImageBackground source={Background} style={styles.background}>
       <SafeAreaView style={styles.container}>
         <Image source={Logo} style={styles.logo} />
 
