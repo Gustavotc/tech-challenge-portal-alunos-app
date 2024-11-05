@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 45,
+    fontSize: 50,
     fontWeight: 'bold',
-    fontFamily: 'Roboto',
+    fontFamily: 'Roboto_700Bold',
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 20,
     textAlign: 'center',
-    fontFamily: 'Roboto',
+    fontFamily: 'Roboto_400Regular',
   },
   button: {
     width: '100%',

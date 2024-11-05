@@ -11,7 +11,7 @@ const Button: React.FC<Props> = ({ title, style, ...rest }) => {
   return (
     <View style={[style, { width: style?.width ?? '100%' }]}>
       <TouchableOpacity activeOpacity={0.7} {...rest} style={styles.container}>
-        <Text>{title}</Text>
+        <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     </View>
   );

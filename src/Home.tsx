@@ -22,8 +22,16 @@ const Home: React.FC = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button style={styles.button} title='Login' onPress={() => navigation.navigate('Login')} />
-          <Button style={styles.button} title='Sign Up' onPress={() => navigation.navigate('Login')} />
+          <Button
+            style={styles.button}
+            title='Login'
+            onPress={() => navigation.navigate('Login')}
+          />
+          <Button
+            style={styles.button}
+            title='Sign Up'
+            onPress={() => navigation.navigate('Login')}
+          />
         </View>
       </SafeAreaView>
     </ImageBackground>
