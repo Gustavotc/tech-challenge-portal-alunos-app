@@ -10,5 +10,6 @@ module.exports = {
         jsxSingleQuote: true,
       },
     ],
+    'react-hooks/exhaustive-deps': 'off',
   },
 };
