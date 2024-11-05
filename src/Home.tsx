@@ -31,7 +31,7 @@ const Home: React.FC = () => {
           <Button
             style={styles.button}
             title='Sign Up'
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('Register')}
           />
         </View>
       </SafeAreaView>
