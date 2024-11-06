@@ -6,12 +6,14 @@ import { useAuth } from '@/contexts/AuthContext';
 import Register from '@/features/login/presentation/register/Register';
 import Home from '@/Home';
 import Feed from '@/features/posts/presentation/home/Feed';
+import { CreatePost } from '@/features/post/presentation/createPost/create-post';
 
 export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
   Register: undefined;
   Feed: undefined;
+  PostForm: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -36,7 +38,10 @@ const Routes: React.FC = () => {
             <Stack.Screen name='Register' component={Register} />
           </>
         ) : (
-          <Stack.Screen name='Feed' component={Feed} />
+          <>
+            <Stack.Screen name='Feed' component={Feed} />
+            <Stack.Screen name='PostForm' component={CreatePost} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

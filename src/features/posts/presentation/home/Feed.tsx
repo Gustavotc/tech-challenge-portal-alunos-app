@@ -19,6 +19,9 @@ const Feed: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Icon name='exit-run' size={32} onPress={controller.handleSignOut} />
+
+      <Icon name='file-document' size={32} onPress={controller.handleCreatePost} />
+
       <Text style={styles.title}>Posts</Text>
 
       <TextInput
