@@ -17,14 +17,11 @@ export const useFeedController = () => {
   const { updateUser } = useAuth();
 
   const updatePostsList = async (textFilter?: string) => {
-    console.log('Buscando posts');
-
     const postsResponse = textFilter
       ? await searchPosts(textFilter)
       : await fetchPosts(currentPage.current);
 
     hasMorePostsToFetch.current = postsResponse.length === CONSTANTS.POST_LIST_LIMIT;
-    console.log(hasMorePostsToFetch.current);
 
     if (currentPage.current === 1) {
       setPosts(postsResponse);
@@ -48,7 +45,6 @@ export const useFeedController = () => {
   };
 
   const onEndReached = async () => {
-    console.log('onEndReached');
     if (!hasMorePostsToFetch.current) return;
 
     currentPage.current += 1;
