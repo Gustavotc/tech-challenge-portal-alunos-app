@@ -21,13 +21,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 25,
   },
-  buttonContainer: {
-    alignItems: 'center',
-    width: '70%',
-    height: 80,
-    justifyContent: 'space-between',
-    marginBottom: 80,
-  },
 });
 
 export default styles;
+

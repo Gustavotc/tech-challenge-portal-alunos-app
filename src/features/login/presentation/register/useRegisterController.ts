@@ -5,6 +5,7 @@ import { formLoginSchema, IFormLoginSchema } from '../../domain/schemas/FormLogi
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Keyboard } from 'react-native';
+import { formRegisterSchema, IFormRegisterSchema } from '../../domain/schemas/FormRegisterSchema';
 
 export const useRegisterController = () => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -13,8 +14,8 @@ export const useRegisterController = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormLoginSchema>({
-    resolver: zodResolver(formLoginSchema),
+  } = useForm<IFormRegisterSchema>({
+    resolver: zodResolver(formRegisterSchema),
   });
 
   const onSubmitSuccess = async (userCredentials: IUserCredentials) => {
@@ -44,3 +45,4 @@ export const useRegisterController = () => {
     handleSignIn: onSubmit,
   };
 };
+
