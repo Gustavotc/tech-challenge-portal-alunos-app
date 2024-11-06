@@ -7,8 +7,11 @@ import { Keyboard } from 'react-native';
 import { useLoginService } from '../../infra/services/LoginService';
 import Toast from 'react-native-root-toast';
 import { useAuth } from '@/contexts/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
 export const useLoginController = () => {
+  const navigation = useNavigation();
+
   const [hidePassword, setHidePassword] = useState(true);
 
   const {
@@ -26,7 +29,6 @@ export const useLoginController = () => {
     Keyboard.dismiss();
 
     try {
-      formLoginSchema.parse(userCredentials);
       const user = await loginService.authenticateUser(userCredentials);
       updateUser(user);
     } catch {
@@ -40,11 +42,16 @@ export const useLoginController = () => {
     setHidePassword((prevState) => !prevState);
   };
 
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   return {
     errors,
     hidePassword,
     control,
     toggleHidePassword,
     handleSignIn: onSubmit,
+    handleGoBack,
   };
 };

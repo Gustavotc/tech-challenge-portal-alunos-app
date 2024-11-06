@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
     height: 40,
     width: '100%',
   },
+  text: {
+    fontSize: 20,
+    color: '#FFF',
+    fontFamily: 'Roboto_700Bold',
+  },
 });
 
 export default styles;

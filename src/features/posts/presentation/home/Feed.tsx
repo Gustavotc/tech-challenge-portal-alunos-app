@@ -1,15 +1,16 @@
 import React from 'react';
 import { Text, FlatList } from 'react-native';
-import { useHomeController } from './useHomeController';
+import { useFeedController } from './useFeedController';
 import EmptyPostsList from './components/emptyPostsList/EmptyPostsList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './Styles';
 import { IPost } from '../../domain/models/Post';
 import TextInput from '@/components/textInput/TextInput';
 import PostCard from './components/postCard/PostCard';
+import Icon from '@/components/icon/Icon';
 
-const Home: React.FC = () => {
-  const controller = useHomeController();
+const Feed: React.FC = () => {
+  const controller = useFeedController();
 
   const renderItem = (item: IPost) => {
     return <PostCard post={item} style={{ marginBottom: 16 }} />;
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Icon name='exit-run' size={32} onPress={controller.handleSignOut} />
       <Text style={styles.title}>Posts</Text>
 
       <TextInput
@@ -39,4 +41,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Feed;

@@ -1,25 +1,25 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 16,
   },
   background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: Dimensions.get('screen').height,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
-    width: 200,
-    height: 120,
-    marginTop: '30%',
+    width: '100%',
+    height: 200,
+    paddingHorizontal: 10,
   },
-  scrollContainer: {
-    flex: 1,
-    alignItems: 'center',
+  textInputComponent: {
+    marginHorizontal: 25,
   },
 });
 

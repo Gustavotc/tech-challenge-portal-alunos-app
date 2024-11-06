@@ -2,24 +2,36 @@ import { useEffect, useRef, useState } from 'react';
 import { IPost } from '../../domain/models/Post';
 import { usePostService } from '../../infra/services/postService/PostService';
 import { CONSTANTS } from '@/constants/Constants';
+import { useAuth } from '@/contexts/AuthContext';
 
-export const useHomeController = () => {
+export const useFeedController = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [search, setSearch] = useState('');
 
   const currentPage = useRef(1);
-  const hasMorePostsToFetch = useRef(false);
+  const hasMorePostsToFetch = useRef(true);
   const searchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const { fetchPosts, searchPosts } = usePostService();
 
+  const { updateUser } = useAuth();
+
   const updatePostsList = async (textFilter?: string) => {
+    console.log('Buscando posts');
+
     const postsResponse = textFilter
       ? await searchPosts(textFilter)
       : await fetchPosts(currentPage.current);
 
     hasMorePostsToFetch.current = postsResponse.length === CONSTANTS.POST_LIST_LIMIT;
-    setPosts(postsResponse);
+    console.log(hasMorePostsToFetch.current);
+
+    if (currentPage.current === 1) {
+      setPosts(postsResponse);
+      return;
+    }
+
+    setPosts((oldPosts) => [...oldPosts, ...postsResponse]);
   };
 
   const handleSearch = (text: string) => {
@@ -36,15 +48,20 @@ export const useHomeController = () => {
   };
 
   const onEndReached = async () => {
+    console.log('onEndReached');
     if (!hasMorePostsToFetch.current) return;
 
     currentPage.current += 1;
     updatePostsList();
   };
 
+  const handleSignOut = () => {
+    updateUser(null);
+  };
+
   useEffect(() => {
     updatePostsList();
   }, []);
 
-  return { posts, search, handleSearch, onEndReached };
+  return { posts, search, handleSearch, onEndReached, handleSignOut };
 };
