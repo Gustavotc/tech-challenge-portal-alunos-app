@@ -105,7 +105,7 @@ const Register: React.FC = () => {
 
           <Button
             title='Create Account'
-            onPress={controller.handleSignIn}
+            onPress={controller.handleRegister}
             style={{ alignSelf: 'center', marginTop: 32, width: '70%' }}
           />
         </ScrollView>
