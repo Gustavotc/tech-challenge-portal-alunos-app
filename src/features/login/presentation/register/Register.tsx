@@ -8,6 +8,7 @@ import Logo from '@/../assets/images/logo.png';
 import Background from '@/../assets/images/background.png';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Controller } from 'react-hook-form';
+import Icon from '@/components/icon/Icon';
 
 const Register: React.FC = () => {
   const controller = useRegisterController();
@@ -15,6 +16,13 @@ const Register: React.FC = () => {
   return (
     <ImageBackground source={Background} style={styles.background}>
       <SafeAreaView style={styles.container}>
+        <Icon
+          name='arrow-left'
+          size={24}
+          onPress={controller.handleGoBack}
+          style={{ alignSelf: 'flex-start', marginLeft: 16 }}
+        />
+
         <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: '100%' }}>
           <Image source={Logo} style={styles.logo} />
 
@@ -45,7 +53,7 @@ const Register: React.FC = () => {
                   errorMessage={controller.errors.email?.message}
                   leftIcon={{ name: 'email-outline' }}
                   keyboardType='email-address'
-                  style={{ marginTop: 32 }}
+                  style={{ marginTop: 24 }}
                 />
               )}
             />

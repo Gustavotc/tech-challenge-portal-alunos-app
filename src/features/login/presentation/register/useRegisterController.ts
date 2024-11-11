@@ -6,9 +6,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Keyboard } from 'react-native';
 import { formRegisterSchema, IFormRegisterSchema } from '../../domain/schemas/FormRegisterSchema';
+import { useNavigation } from '@react-navigation/native';
 
 export const useRegisterController = () => {
   const [hidePassword, setHidePassword] = useState(true);
+  const navigation = useNavigation();
 
   const {
     control,
@@ -37,12 +39,16 @@ export const useRegisterController = () => {
     setHidePassword((prevState) => !prevState);
   };
 
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   return {
     errors,
     hidePassword,
     control,
     toggleHidePassword,
     handleSignIn: onSubmit,
+    handleGoBack,
   };
 };
-
