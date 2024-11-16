@@ -1,5 +1,5 @@
-import { IPost } from "../interfaces/IPost";
-import PostRepository from "../../infra/repositories/PostRepository";
+import { IPost } from '../interfaces/IPost';
+import PostRepository from '../../infra/repositories/PostRepository';
 
 type IFetchTeacherPostsResponse = {
   fetchTeacherPosts: (params: IFetchTeacherPostsParams) => Promise<IPost[]>;

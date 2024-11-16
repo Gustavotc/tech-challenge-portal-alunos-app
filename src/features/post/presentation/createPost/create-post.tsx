@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FormButtonsRow from './components/formButtonsRow/FormButtonsRow';
 import styles from './Styles';

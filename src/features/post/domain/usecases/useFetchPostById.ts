@@ -1,4 +1,4 @@
-import PostRepository from "../../infra/repositories/PostRepository";
+import PostRepository from '../../infra/repositories/PostRepository';
 
 export const useFetchPostById = () => {
   const repository = new PostRepository();

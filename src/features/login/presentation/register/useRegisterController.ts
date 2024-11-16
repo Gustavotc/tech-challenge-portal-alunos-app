@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IUserCredentials } from '../../domain/models/IUserCredentials';
 import api from '@/config/api/Api';
-import { formLoginSchema, IFormLoginSchema } from '../../domain/schemas/FormLoginSchema';
+import { formLoginSchema } from '../../domain/schemas/FormLoginSchema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Keyboard } from 'react-native';

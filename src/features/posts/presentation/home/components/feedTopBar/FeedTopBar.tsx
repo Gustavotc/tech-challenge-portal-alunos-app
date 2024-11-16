@@ -17,7 +17,7 @@ const FeedTopBar: React.FC = () => {
   const { user, updateUser } = useAuth();
 
   const handleCreatePost = () => {
-    navigation.navigate('PostForm');
+    navigation.navigate('TeacherPosts');
   };
 
   const handleLogout = () => {
@@ -39,12 +39,15 @@ const FeedTopBar: React.FC = () => {
         {'Olá,\n'}
         <Text style={[styles.username, { fontWeight: '700' }]}>{user?.name}</Text>
       </Text>
-      <Icon
-        name='clipboard-plus-outline'
-        size={32}
-        onPress={handleCreatePost}
-        style={{ marginRight: 8 }}
-      />
+
+      {user?.role.type === 'DOCENTE' && (
+        <Icon
+          name='clipboard-plus-outline'
+          size={32}
+          onPress={handleCreatePost}
+          style={{ marginRight: 8 }}
+        />
+      )}
 
       <Icon name='exit-to-app' size={32} color='#8d0000' onPress={handleLogout} />
     </View>

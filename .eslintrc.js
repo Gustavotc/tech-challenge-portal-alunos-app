@@ -8,7 +8,7 @@ module.exports = {
       {
         singleQuote: true,
         jsxSingleQuote: true,
-        endOfLine: 'off',
+        endOfLine: 'auto',
       },
     ],
     'react-hooks/exhaustive-deps': 'off',

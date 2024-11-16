@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { IPost } from "../interfaces/IPost";
-import PostRepository from "../../infra/repositories/PostRepository";
+import { useEffect, useState } from 'react';
+import { IPost } from '../interfaces/IPost';
+import PostRepository from '../../infra/repositories/PostRepository';
 
 type IUserFetchPosts = {
   loading: boolean;

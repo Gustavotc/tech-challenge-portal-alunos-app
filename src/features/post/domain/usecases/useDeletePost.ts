@@ -1,4 +1,4 @@
-import PostRepository from "../../infra/repositories/PostRepository";
+import PostRepository from '../../infra/repositories/PostRepository';
 
 export const useDeletePost = () => {
   const repository = new PostRepository();
