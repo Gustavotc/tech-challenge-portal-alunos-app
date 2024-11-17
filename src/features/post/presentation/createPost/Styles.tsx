@@ -61,7 +61,11 @@ const styles = StyleSheet.create({
   },
   inputView: {
     marginBottom: 16,
-  }
+  },
+  inputError: {
+    borderColor: 'red',
+    borderWidth: 1,
+  },
 
 });
 
