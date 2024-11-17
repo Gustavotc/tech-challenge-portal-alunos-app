@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 4,
-    padding: 8,
-    marginBottom: 16,
+    padding: 8
   },
   textArea: {
     height: 100,
@@ -55,6 +54,15 @@ const styles = StyleSheet.create({
     top: 0,
     height: Dimensions.get('screen').height,
   },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: 4
+  },
+  inputView: {
+    marginBottom: 16,
+  }
+
 });
 
 export default styles;
