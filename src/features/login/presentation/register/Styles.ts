@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
+    marginTop: 16,
   },
   background: {
     flex: 1,

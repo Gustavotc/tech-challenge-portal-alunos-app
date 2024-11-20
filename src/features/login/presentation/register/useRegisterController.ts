@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { IUserCredentials } from '../../domain/models/IUserCredentials';
-import api from '@/config/api/Api';
-import { formLoginSchema } from '../../domain/schemas/FormLoginSchema';
+import { IUserRegister } from '../../domain/models/IUserRegister';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Keyboard } from 'react-native';
 import { formRegisterSchema, IFormRegisterSchema } from '../../domain/schemas/FormRegisterSchema';
+import { useNavigation } from '@react-navigation/native';
+import Toast from 'react-native-root-toast';
+import { useRegisterService } from '../../infra/services/RegisterService';
 
 export const useRegisterController = () => {
   const [hidePassword, setHidePassword] = useState(true);
+  const navigation = useNavigation();
 
   const {
     control,
@@ -18,23 +20,36 @@ export const useRegisterController = () => {
     resolver: zodResolver(formRegisterSchema),
   });
 
-  const onSubmitSuccess = async (userCredentials: IUserCredentials) => {
+  const registerService = useRegisterService();
+
+  const onSubmitSuccess = async (userRegister: IUserRegister) => {
     Keyboard.dismiss();
 
     try {
-      formLoginSchema.parse(userCredentials);
+      const user = await registerService.registerUser(userRegister);
 
-      const response = await api.post('/auth/login', userCredentials);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+      if (user) {
+        Toast.show('Usuário criado com sucesso!');
+      }
+    } catch {
+      Toast.show('Falha ao criar usuário, tente novamente!');
     }
   };
 
-  const onSubmit = handleSubmit(onSubmitSuccess);
+  const onSubmit = handleSubmit((data) => {
+    const userRegister: IUserRegister = {
+      ...data,
+      role_id: 'DISCENTE',
+    };
+    onSubmitSuccess(userRegister);
+  });
 
   const toggleHidePassword = () => {
     setHidePassword((prevState) => !prevState);
+  };
+
+  const handleGoBack = () => {
+    navigation.goBack();
   };
 
   return {
@@ -42,7 +57,8 @@ export const useRegisterController = () => {
     hidePassword,
     control,
     toggleHidePassword,
-    handleSignIn: onSubmit,
+    handleRegister: onSubmit,
+    handleGoBack,
   };
 };
 
