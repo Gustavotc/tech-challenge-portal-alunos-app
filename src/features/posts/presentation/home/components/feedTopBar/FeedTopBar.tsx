@@ -1,14 +1,19 @@
 import React from 'react';
 import { View, Text, Alert } from 'react-native';
 import Icon from '@/components/icon/Icon';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/routes/Routes';
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { useAuth } from '@/contexts/AuthContext';
 import styles from './Styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { TabsParamList } from '@/routes/Tab.routes';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/routes/Routes';
 
-type IFeedTopBarNavigationProps = NativeStackNavigationProp<RootStackParamList, 'Feed'>;
+type IFeedTopBarNavigationProps = CompositeNavigationProp<
+  BottomTabNavigationProp<TabsParamList, 'Feed'>,
+  NativeStackNavigationProp<RootStackParamList>
+>;
 
 const FeedTopBar: React.FC = () => {
   const insets = useSafeAreaInsets();
@@ -17,7 +22,7 @@ const FeedTopBar: React.FC = () => {
   const { user, updateUser } = useAuth();
 
   const handleCreatePost = () => {
-    navigation.navigate('TeacherPosts');
+    navigation.navigate('PostForm');
   };
 
   const handleLogout = () => {
