@@ -8,6 +8,7 @@ import Home from '@/Home';
 import Feed from '@/features/posts/presentation/home/Feed';
 import { CreatePost } from '@/features/post/presentation/createPost/create-post';
 import TeacherPosts from '@/features/posts/presentation/teacherPosts/TeacherPosts';
+import PostDetails from '@/features/post/presentation/postDetails/PostDetails';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   Feed: undefined;
   PostForm: { postId: string } | undefined;
   TeacherPosts: undefined;
+  PostDetails: { postId: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,6 +46,7 @@ const Routes: React.FC = () => {
             <Stack.Screen name='Feed' component={Feed} />
             <Stack.Screen name='PostForm' component={CreatePost} />
             <Stack.Screen name='TeacherPosts' component={TeacherPosts} />
+            <Stack.Screen name='PostDetails' component={PostDetails} />
           </>
         )}
       </Stack.Navigator>

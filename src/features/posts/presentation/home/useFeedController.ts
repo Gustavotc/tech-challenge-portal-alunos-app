@@ -49,7 +49,7 @@ export const useFeedController = () => {
   };
 
   const handlePostPress = (post: IPost) => {
-    navigation.navigate('PostForm', {
+    navigation.navigate('PostDetails', {
       postId: post.id,
     });
   };
