@@ -14,7 +14,7 @@ export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Feed: undefined;
-  PostForm: undefined;
+  PostForm: { postId: string } | undefined;
   TeacherPosts: undefined;
 };
 

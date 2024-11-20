@@ -1,6 +1,7 @@
 import api from '@/config/api/Api';
 import { CONSTANTS } from '@/constants/Constants';
-import { IPost, IPostJson } from '@/features/posts/domain/models/Post';
+import { IPost } from '@/features/post/domain/interfaces/IPost';
+import { IPostJson } from '@/features/posts/domain/models/Post';
 
 export const usePostService = () => {
   const fetchPosts = async (page: number): Promise<IPost[]> => {
@@ -15,13 +16,13 @@ export const usePostService = () => {
         description: postJson.description,
         category: postJson.category,
         user: postJson.user,
-        createAt: new Date(postJson.createAt),
-        updateAt: new Date(postJson.updateAt),
+        author: postJson.user.name,
+        date: new Date(postJson.createAt),
       };
     });
   };
 
-  const searchPosts = async (text: string) => {
+  const searchPosts = async (text: string): Promise<IPost[]> => {
     const endpoint = `/post/search?text=${text}`;
 
     const response = await api.get<IPostJson[]>(endpoint);
@@ -33,8 +34,8 @@ export const usePostService = () => {
         description: postJson.description,
         category: postJson.category,
         user: postJson.user,
-        createAt: new Date(postJson.createAt),
-        updateAt: new Date(postJson.updateAt),
+        author: postJson.user.name,
+        date: new Date(postJson.createAt),
       };
     });
   };

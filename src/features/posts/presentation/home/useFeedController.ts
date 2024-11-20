@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { IPost } from '../../domain/models/Post';
 import { usePostService } from '../../infra/services/postService/PostService';
 import { CONSTANTS } from '@/constants/Constants';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/routes/Routes';
+import { IPost } from '@/features/post/domain/interfaces/IPost';
+
+type IFeedNavigationParams = NativeStackNavigationProp<RootStackParamList, 'Feed'>;
 
 export const useFeedController = () => {
+  const navigation = useNavigation<IFeedNavigationParams>();
+
   const [posts, setPosts] = useState<IPost[]>([]);
   const [search, setSearch] = useState('');
 
@@ -41,6 +48,12 @@ export const useFeedController = () => {
     }, 700);
   };
 
+  const handlePostPress = (post: IPost) => {
+    navigation.navigate('PostForm', {
+      postId: post.id,
+    });
+  };
+
   const onEndReached = async () => {
     if (!hasMorePostsToFetch.current) return;
 
@@ -52,5 +65,5 @@ export const useFeedController = () => {
     updatePostsList();
   }, []);
 
-  return { posts, search, handleSearch, onEndReached };
+  return { posts, search, handleSearch, onEndReached, handlePostPress };
 };

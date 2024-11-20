@@ -17,7 +17,7 @@ const FeedTopBar: React.FC = () => {
   const { user, updateUser } = useAuth();
 
   const handleCreatePost = () => {
-    navigation.navigate('PostForm');
+    navigation.navigate('TeacherPosts');
   };
 
   const handleLogout = () => {

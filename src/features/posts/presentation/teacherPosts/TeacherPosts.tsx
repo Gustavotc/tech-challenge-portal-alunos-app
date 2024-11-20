@@ -10,7 +10,13 @@ const TeacherPosts: React.FC = () => {
   const controller = useTeacherPostsController();
 
   const renderItem = (item: IPost) => {
-    return <PostCard post={item} style={{ marginBottom: 8 }} />;
+    return (
+      <PostCard
+        post={item}
+        onPress={() => controller.handlePostPress(item)}
+        style={{ marginBottom: 8 }}
+      />
+    );
   };
 
   return (

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
-import { useNavigation, RouteProp } from '@react-navigation/native';
+import { useNavigation, RouteProp, useRoute } from '@react-navigation/native';
 import FormButtonsRow from './components/formButtonsRow/FormButtonsRow';
 import styles from './Styles';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -12,12 +12,16 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/routes/Routes';
 import { useEditPost } from '../../domain/usecases/useEditPost';
 import Toast from 'react-native-root-toast';
+import { useFetchPostById } from '../../domain/usecases/useFetchPostById';
+import Icon from '@/components/icon/Icon';
+import { useDeletePost } from '../../domain/usecases/useDeletePost';
 
 type CreatePostRouteProp = RouteProp<RootStackParamList, 'PostForm'>;
 type PostFormNavigationProps = NativeStackNavigationProp<RootStackParamList, 'PostForm'>;
 
-export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) => {
+export const CreatePost: React.FC = () => {
   const navigation = useNavigation<PostFormNavigationProps>();
+  const route = useRoute<CreatePostRouteProp>();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -28,12 +32,14 @@ export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) 
   const [descriptionError, setDescriptionError] = useState(false);
   const [categoryError, setCategoryError] = useState(false);
 
-  const { postId = null } = route.params || {};
-  const isEditing = postId !== null;
+  const postId = route.params?.postId;
+  const isEditing = !!postId;
 
   const { user } = useAuth();
   const { createPost } = useCreatePost();
   const { editPost } = useEditPost();
+  const { fetchPostById } = useFetchPostById();
+  const { deletePost } = useDeletePost();
 
   const handleSave = async () => {
     if (!user) return;
@@ -100,11 +106,53 @@ export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) 
     navigation.goBack();
   };
 
+  const fetchPostData = async (postId: string) => {
+    try {
+      setLoading(true);
+      const response = await fetchPostById(postId);
+
+      setTitle(response.title);
+      setDescription(response.description);
+      setCategory(response.category);
+    } catch {
+      Toast.show('Falha ao buscar post');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeletePost = async () => {
+    if (!user || !postId) return;
+
+    try {
+      setLoading(true);
+      await deletePost(postId, user.id);
+      navigation.replace('Feed');
+    } catch {
+      Toast.show('Falha ao deletar post');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const postId = route.params?.postId;
+
+    if (!postId) return;
+
+    fetchPostData(postId);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient colors={['#FFC832', '#F7FF87']} style={styles.background} />
       <View style={styles.card}>
-        <Text style={styles.titleText}>{isEditing ? 'EDITAR POST' : 'CRIAR POST'}</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleText}>{isEditing ? 'EDITAR POST' : 'CRIAR POST'}</Text>
+          {isEditing && (
+            <Icon name='trash-can-outline' size={32} color='#a30000' onPress={handleDeletePost} />
+          )}
+        </View>
 
         <View style={styles.inputView}>
           <Text style={styles.label}>Título</Text>

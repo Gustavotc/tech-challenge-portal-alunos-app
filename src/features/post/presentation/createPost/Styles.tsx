@@ -27,10 +27,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
+  titleContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   titleText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
   },
   label: {
     fontSize: 16,
@@ -41,7 +46,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 4,
-    padding: 8
+    padding: 8,
   },
   textArea: {
     height: 100,
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 12,
-    marginTop: 4
+    marginTop: 4,
   },
   inputView: {
     marginBottom: 16,
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     borderWidth: 1,
   },
-
 });
 
 export default styles;
+
