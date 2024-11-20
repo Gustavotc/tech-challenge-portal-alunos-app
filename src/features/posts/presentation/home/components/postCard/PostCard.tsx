@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ViewStyle } from 'react-native';
 import styles from './Styles';
-import { IPost } from '@/features/posts/domain/models/Post';
+import { IPost } from '@/features/post/domain/interfaces/IPost';
 
 type Props = {
   post: IPost;
