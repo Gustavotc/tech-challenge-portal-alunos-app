@@ -78,13 +78,13 @@ export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) 
           post_id: postId,
         });
       }
-      navigation.navigate('TeacherPosts');
-      Toast.show(isEditing ? "Postagem editada!" : "Postagem criada!", {
+      navigation.replace('TeacherPosts');
+      Toast.show(isEditing ? 'Postagem editada!' : 'Postagem criada!', {
         duration: Toast.durations.SHORT,
         position: Toast.positions.BOTTOM,
       });
     } catch {
-      Toast.show("Erro ao salvar postagem.", {
+      Toast.show('Erro ao salvar postagem.', {
         duration: Toast.durations.SHORT,
         position: Toast.positions.BOTTOM,
       });
@@ -109,7 +109,7 @@ export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) 
         <View style={styles.inputView}>
           <Text style={styles.label}>Título</Text>
           <TextInput
-            placeholder="Informe o título do post"
+            placeholder='Informe o título do post'
             style={[styles.input, titleError && styles.inputError]}
             value={title}
             onChangeText={(text) => {
@@ -123,7 +123,7 @@ export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) 
         <View style={styles.inputView}>
           <Text style={styles.label}>Descrição</Text>
           <TextInput
-            placeholder="Comente os detalhes do seu post..."
+            placeholder='Comente os detalhes do seu post...'
             style={[styles.input, styles.textArea, descriptionError && styles.inputError]}
             value={description}
             multiline
@@ -138,7 +138,7 @@ export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) 
         <View style={styles.inputView}>
           <Text style={styles.label}>Categoria</Text>
           <TextInput
-            placeholder="Informe a categoria"
+            placeholder='Informe a categoria'
             style={[styles.input, categoryError && styles.inputError]}
             value={category}
             onChangeText={(text) => {
@@ -154,3 +154,4 @@ export const CreatePost: React.FC<{ route: CreatePostRouteProp }> = ({ route }) 
     </SafeAreaView>
   );
 };
+
