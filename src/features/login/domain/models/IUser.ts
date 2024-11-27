@@ -6,4 +6,5 @@ export interface IUser {
     id: string;
     type: 'DISCENTE' | 'DOCENTE';
   };
+  password: string;
 }

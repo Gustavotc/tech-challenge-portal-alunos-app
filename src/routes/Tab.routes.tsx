@@ -14,12 +14,12 @@ const Tab = createBottomTabNavigator<TabsParamList>();
 
 export function AppTabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: 'orange' }}>
       <Tab.Screen
         name='Feed'
         component={Feed}
         options={{
-          tabBarIcon: (props) => <Icon size={24} name='home-outline' />,
+          tabBarIcon: (props) => <Icon size={24} name='home-outline' color={props.color} />,
         }}
       />
       <Tab.Screen
@@ -27,7 +27,9 @@ export function AppTabs() {
         component={TeacherPosts}
         options={{
           title: 'Meus posts',
-          tabBarIcon: (props) => <Icon size={24} name='clipboard-edit-outline' />,
+          tabBarIcon: (props) => (
+            <Icon size={24} name='clipboard-edit-outline' color={props.color} />
+          ),
         }}
       />
 
@@ -36,7 +38,9 @@ export function AppTabs() {
         component={UsersList}
         options={{
           title: 'Usuários',
-          tabBarIcon: (props) => <Icon size={24} name='account-multiple-outline' />,
+          tabBarIcon: (props) => (
+            <Icon size={24} name='account-multiple-outline' color={props.color} />
+          ),
         }}
       />
     </Tab.Navigator>
