@@ -84,7 +84,7 @@ export const CreatePost: React.FC = () => {
           post_id: postId,
         });
       }
-      navigation.replace('TeacherPosts');
+      navigation.replace('Tabs', { screen: 'TeacherPosts' });
       Toast.show(isEditing ? 'Postagem editada!' : 'Postagem criada!', {
         duration: Toast.durations.SHORT,
         position: Toast.positions.BOTTOM,
@@ -127,7 +127,7 @@ export const CreatePost: React.FC = () => {
     try {
       setLoading(true);
       await deletePost(postId, user.id);
-      navigation.replace('Feed');
+      navigation.replace('Tabs', { screen: 'TeacherPosts' });
     } catch {
       Toast.show('Falha ao deletar post');
     } finally {

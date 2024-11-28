@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useUserFormController } from './useUserFormController';
 import { Controller } from 'react-hook-form';
+import { Picker } from '@react-native-picker/picker';
 
 const UserForm: React.FC = () => {
   const controller = useUserFormController();
@@ -98,12 +99,17 @@ const UserForm: React.FC = () => {
               control={controller.control}
               name='role'
               render={({ field: { value, onChange } }) => (
-                <TextInput
-                  placeholder='Informe a categoria do usuário'
-                  style={[styles.input, false && styles.inputError]}
-                  value={value}
-                  onChangeText={onChange}
-                />
+                <View
+                  style={{
+                    borderRadius: 4,
+                    borderColor: '#000000',
+                    borderWidth: 1,
+                  }}>
+                  <Picker selectedValue={value} onValueChange={(itemValue) => onChange(itemValue)}>
+                    <Picker.Item label='Docente' value='DOCENTE' />
+                    <Picker.Item label='Discente' value='DISCENTE' />
+                  </Picker>
+                </View>
               )}
             />
             {controller.errors.role?.message && (

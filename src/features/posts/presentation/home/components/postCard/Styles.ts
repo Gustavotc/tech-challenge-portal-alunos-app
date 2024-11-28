@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   title: { fontSize: 14, fontWeight: '500', marginBottom: 4 },
+  author: { fontSize: 12, marginBottom: 4 },
   description: { fontSize: 12 },
 });
 

@@ -7,10 +7,13 @@ import { formRegisterSchema, IFormRegisterSchema } from '../../domain/schemas/Fo
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-root-toast';
 import { useRegisterService } from '../../infra/services/RegisterService';
+import { useAuth } from '@/contexts/AuthContext';
 
 export const useRegisterController = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const navigation = useNavigation();
+
+  const { updateUser } = useAuth();
 
   const {
     control,
@@ -30,6 +33,7 @@ export const useRegisterController = () => {
 
       if (user) {
         Toast.show('Usuário criado com sucesso!');
+        updateUser(user);
       }
     } catch {
       Toast.show('Falha ao criar usuário, tente novamente!');

@@ -1,4 +1,5 @@
 import Icon from '@/components/icon/Icon';
+import { useAuth } from '@/contexts/AuthContext';
 import Feed from '@/features/posts/presentation/home/Feed';
 import TeacherPosts from '@/features/posts/presentation/teacherPosts/TeacherPosts';
 import UsersList from '@/features/users/presentation/usersList/UsersList';
@@ -13,6 +14,10 @@ export type TabsParamList = {
 const Tab = createBottomTabNavigator<TabsParamList>();
 
 export function AppTabs() {
+  const { user } = useAuth();
+
+  const isTeacher = user?.role.type === 'DOCENTE';
+
   return (
     <Tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: 'orange' }}>
       <Tab.Screen
@@ -22,27 +27,32 @@ export function AppTabs() {
           tabBarIcon: (props) => <Icon size={24} name='home-outline' color={props.color} />,
         }}
       />
-      <Tab.Screen
-        name='TeacherPosts'
-        component={TeacherPosts}
-        options={{
-          title: 'Meus posts',
-          tabBarIcon: (props) => (
-            <Icon size={24} name='clipboard-edit-outline' color={props.color} />
-          ),
-        }}
-      />
 
-      <Tab.Screen
-        name='Users'
-        component={UsersList}
-        options={{
-          title: 'Usuários',
-          tabBarIcon: (props) => (
-            <Icon size={24} name='account-multiple-outline' color={props.color} />
-          ),
-        }}
-      />
+      {isTeacher && (
+        <Tab.Screen
+          name='TeacherPosts'
+          component={TeacherPosts}
+          options={{
+            title: 'Meus posts',
+            tabBarIcon: (props) => (
+              <Icon size={24} name='clipboard-edit-outline' color={props.color} />
+            ),
+          }}
+        />
+      )}
+
+      {isTeacher && (
+        <Tab.Screen
+          name='Users'
+          component={UsersList}
+          options={{
+            title: 'Usuários',
+            tabBarIcon: (props) => (
+              <Icon size={24} name='account-multiple-outline' color={props.color} />
+            ),
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 }

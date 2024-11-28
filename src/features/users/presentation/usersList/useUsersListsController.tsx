@@ -7,6 +7,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/routes/Routes';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { TabsParamList } from '@/routes/Tab.routes';
+import { useAuth } from '@/contexts/AuthContext';
 
 type IUsersListNavigationProps = CompositeNavigationProp<
   BottomTabNavigationProp<TabsParamList, 'Users'>,
@@ -28,10 +29,14 @@ export const useUsersListController = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const filteredUsers = useMemo(() => {
-    if (filter === 'ALL') return users;
+  const { user: currentUser } = useAuth();
 
-    return users.filter((user) => user.role.type === filter);
+  const filteredUsers = useMemo(() => {
+    if (!currentUser) return;
+
+    if (filter === 'ALL') return users.filter((user) => user.id !== currentUser.id);
+
+    return users.filter((user) => user.role.type === filter && user.id !== currentUser.id);
   }, [filter, users]);
 
   const { fetchUsers } = useUserService();

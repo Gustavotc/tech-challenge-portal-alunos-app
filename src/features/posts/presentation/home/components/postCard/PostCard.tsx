@@ -12,6 +12,7 @@ type Props = {
 const PostCard: React.FC<Props> = ({ post, onPress, style }) => {
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={onPress} style={[style, styles.container]}>
+      <Text style={styles.author}>{post.author}</Text>
       <Text style={styles.title}>{post.title}</Text>
 
       <Text style={styles.description}>{post.description}</Text>
