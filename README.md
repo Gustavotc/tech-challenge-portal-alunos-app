@@ -1,50 +1,60 @@
-# Welcome to your Expo app 👋
+<h1 align="center">
+  👨‍🎓 Portal Alunos App 📚
+</h1>
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<p align="center">
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=79A6F5&labelColor=0A1033">
+</p>
 
-## Get started
+## 💻 Project
 
-1. Install dependencies
+This is a mobile application for a student portal, where teachers can create, update, and delete posts, while students can visualize all posts created by teachers, similar to a blog. The project is built using React Native, Expo and Axios.
 
-   ```bash
-   npm install
-   ```
+## :hammer_and_wrench: Features
 
-2. Start the app
+- [ ] Post listing and visualization
+- [ ] Create, update, and delete posts (for teachers)
+- [ ] Pagination support with FlatList
+- [ ] User authentication and role-based access
+- [ ] Responsive design for various devices
+- [ ] Form validation
 
-   ```bash
-    npx expo start
-   ```
+## ✨ Technologies
 
-In the output, you'll find options to open the app in a
+- [ ] React Native
+- [ ] Expo
+- [ ] TypeScript
+- [ ] React Hooks (state and effect management)
+- [ ] Axios (HTTP client)
+- [ ] React Navigation (navigation and routing)
+- [ ] ESLint + Prettier (code quality and formatting)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 👨‍💻 Getting started
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Prerequisites
 
-## Get a fresh project
+- Make sure you have **Node.js**, **Expo CLI**, and **Yarn** installed on your machine.
 
-When you're ready, run:
+### Installation
 
 ```bash
-npm run reset-project
-```
+# Clone the project
+$ git clone https://github.com/Gustavotc/tech-challenge-portal-alunos-app.git
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+# Navigate to the project directory
+$ cd tech-challenge-portal-alunos-app
 
-## Learn more
+# Install the project dependencies
+$ yarn install
 
-To learn more about developing your project with Expo, look at the following resources:
+# Start the development server
+$ npx expo start
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Build the application
+$ npx expo build
 
-## Join the community
+# Check for linting errors
+$ yarn lint
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Fix linting issues
+$ yarn lint:fix
